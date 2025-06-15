@@ -113,12 +113,54 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+	ListNode *cur;
+	int tmp;
+	// 연결 리스트의 시작 지점을 가리킨다
+	cur = ll->head;
+	// 만약에 스택이 비어있지 않을 경우
+	while(!isEmptyStack(s)){
+		pop(s);
+	}
+
+	// 링크드 리스트가 NULL이 아닐때 까지 반복한다
+	while(cur != NULL){
+		// 템프에 cur의 아이템을 집어넣는다.
+		tmp = cur ->item;
+		// 스택에 tmp의 값을 집어넣는다.
+		push(s,tmp);
+		// 헤드는 다음노드를 가리킨다
+		cur = cur -> next;
+	}
 }
 
 void removeEvenValues(Stack *s)
 {
-	/* add your code here */
+	//홀수를 담기위한 tmp 스택 생성
+    Stack tmp;
+	//스택포인터 생성 하고 주소값은 tmp를 가리킴
+	Stack *tmp_ptr = &tmp;
+	//스택 내부 초기화
+	tmp.ll.head = NULL;
+	tmp.ll.size = 0;
+    
+	// 팝 원소 받기위한 변수생성
+    int get_pop;
+
+    // 원래 스택에서 값을 꺼내면서 홀수만 tmp에 저장
+    while (!isEmptyStack(s)) {
+		// 팝한 원소 get_pop에 삽입
+        get_pop = pop(s);
+        if (get_pop % 2 != 0) { // 홀수만 임시 스택에 저장
+            //tmp에 push
+			push(tmp_ptr, get_pop);
+        }
+    }
+
+    // tmp에 저장된 값들을 다시 원래 스택으로 복원 (순서 보존)
+    while (!isEmptyStack(tmp_ptr)) {
+		// 빼낸 원소 s에 다시 추가
+        push(s, pop(tmp_ptr));
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////

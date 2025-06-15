@@ -116,12 +116,48 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	ListNode *cur;
+	cur = ll->head;
+	//링크받는 변수
+	int get_linker;
+    //만약에 큐가 비어있지 않았으면
+	while(!isEmptyQueue(q)) {
+		// 큐원소 버림
+		dequeue(q);
+	}
+	// 링크드 리스트가 비어있지 않을때까지 반복한다.
+	while(cur != NULL) {
+		// 헤드의 값을 링커에 집어넣는다.
+		get_linker = cur->item;
+		// q에 링커의 값을 집어넣는다.
+		enqueue(q,get_linker);
+		//헤드의 값을 다음 값으로 바꾼다.
+		cur = cur ->next;
+	}
 }
 
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	Queue tmp;
+	Queue *tmp_ptr = &tmp;
+	// tmp 내부 초기화
+	tmp.ll.head = NULL;
+	tmp.ll.size = 0;
+    
+	int get_queue;
+	//q가 비어있지 않을때까지 반복한다.
+	while(!isEmptyQueue(q)){
+		get_queue = dequeue(q);
+		//만약에 get_queue가짝수 일경우 
+		if(get_queue %2 == 0) {
+			//tmp_ptr에 집어넣는다.
+			enqueue(tmp_ptr,get_queue);
+		}
+	}
+	//tmp_ptr이 빌때까지 반복
+	while(!isEmptyQueue(tmp_ptr)){
+		enqueue(q,dequeue(tmp_ptr));
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////

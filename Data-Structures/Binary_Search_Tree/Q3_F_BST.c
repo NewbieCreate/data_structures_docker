@@ -23,7 +23,7 @@ typedef struct _stackNode{
 }StackNode; // You should not change the definition of StackNode
 
 typedef struct _stack
-{
+{ 
 	StackNode *top;
 }Stack; // You should not change the definition of Stack
 

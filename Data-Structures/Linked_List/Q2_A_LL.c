@@ -103,7 +103,31 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+    // 수도코드 :
+	/* cur , cur2, tmp 노드를 생성한다. 넣을 index를 판단하기 위해 생성하고 0으로 만든다. 
+	   cur 은 ll1의 헤드위치에 위치 시킨다  cur2는 ll2의 헤드 위치에 위치 시킨다. 
+	   while cur2가 빌때까지 노드를 해체 시킨다 이때 cur2 은 노드가 담긴  tmp에 넣는다
+	   while cur이 NULL 이 아니거나 ll1의 아이템이 tmp보다 클 때까지 반복 할 예정이다
+       index ++; 늘려 가며 넣을 인덱스 위치를 판단한다.
+	   만약에 tmp item 이 cur에 넣을 수 있다면 insertNode(ll1,index,tmp);
+	   넣을 수 없다면 return -1 한다 */
+	ListNode *cur, *cur2;
+	int index = 1; // 헤드부터 순차적으로 가지 않기 때문에 인덱스를 1로 놓음
+	cur = ll1 -> head; // cur = ll1의 헤드를 저장
+	cur2 = ll2 -> head; // cur = ll2의 헤드를 저장
+	while (cur != NULL&& cur2 != NULL) { //cur 이 NULL이 아니거나 cur2 가 NULL이 아닐경우
+		int tmp = cur2 -> item; // tmp에 cur의 아이템을 임시 저장 한다 
+		if (insertNode(ll1, index, tmp) == -1 ) return;  // 
+		if (removeNode(ll2,0) == -1) return;
+		cur2 = ll2 -> head;
+		if(cur != NULL && cur -> next != NULL) {
+			cur = cur ->next->next;
+			index +=2;
+		}else{
+			cur = NULL;
+		}
+	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
