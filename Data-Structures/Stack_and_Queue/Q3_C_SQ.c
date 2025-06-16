@@ -103,7 +103,51 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+   // 짝이 맞는 원소 집어넣는 스택
+   Stack Pass_ble;
+   // 스택포인터 생성
+   Stack *pb_ptr = &Pass_ble;
+   //첫번째 원소 받는 변수생성  
+   int first;  
+   //두번째 원소 받는 변수 생성
+   int last;
+   //flag를 선언
+   int flag = 1;
+   
+   //만약에 스택의 사이즈가 홀수라면
+   if(s->ll.size % 2 != 0) {
+	flag = 0;
+	//리턴 0으로 반환
+	return flag;
+   }
+   //스택이이 빌때까지 반복한다.
+   while(!isEmptyStack(s)){
+	   //첫번째 원소 받고
+	   first = pop(s);
+	   //두번째 원소 받고
+       last = pop(s);
+	   
+	   //만약에 첫번째원소와 두번째원소가 뺀값이 1일 경우
+	   if((first - last) == 1 || (first - last) == -1) {
+		 //임시 저장 스택에 집어넣음
+		 push(pb_ptr,first); 
+		 push(pb_ptr,last);
+	   }else{ // 조건에 맞지 않을 경우
+		// 우선 스택에 임시스택에 집어넣고
+		push(pb_ptr, first);
+		push(pb_ptr, last);
+		//플레그는 0으로 맞춤
+		flag =0;
+	   }
+	   //플래그 검사 끝   
+   }
+   // pb_ptr이 빌때까지 반복한다
+   while(!isEmptyStack(pb_ptr)) {
+	   // pb_ptr의 원소를 꺼내 s스택에 집어넣는다.
+	  push(s,pop(pb_ptr));
+   }
+   // 다 끝난 후 플레그 리턴 (모든과정이 True 였을경우 1, 그렇지 않을 경우 0)
+   return flag;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

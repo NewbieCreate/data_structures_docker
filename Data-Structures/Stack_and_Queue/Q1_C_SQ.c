@@ -121,9 +121,10 @@ void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 	//링크받는 변수
 	int get_linker;
     //만약에 큐가 비어있지 않았으면
-	while(!isEmptyQueue(q)) {
+	if(!isEmptyQueue(q)) {
 		// 큐원소 버림
-		dequeue(q);
+		removeAllItemsFromQueue(q);
+
 	}
 	// 링크드 리스트가 비어있지 않을때까지 반복한다.
 	while(cur != NULL) {
