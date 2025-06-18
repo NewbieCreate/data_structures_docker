@@ -93,8 +93,37 @@ int main()
 
 void levelOrderTraversal(BSTNode* root)
 {
+	//기저조건  : 루트가 NULL일 경우 리턴
+	if (root == NULL) {
+		return;
+	}
+	
+	// 힙 영역에 QueueNode 크기만큼 메모리 동적 할당
+	QueueNode *newNode = malloc(sizeof(QueueNode));
+    // newNode의 data 필드에 트리의 루트 노드 주소 저장
+	newNode ->data = root;
+	// 아직 연결된 다음 노드가 없으므로 NULL로 초기화
+	newNode ->nextPtr = NULL;
 
-    /* add your code here */
+	// 큐의 head와 tail을 모두 newNode로 초기화
+	QueueNode *head = newNode;
+	QueueNode *tail = newNode;
+
+	while(!isEmpty(head)){
+		 // 큐에서 하나 꺼내 현재 노드를 cur로 받음
+		BSTNode *cur = dequeue(&head, &tail);
+		 // 현재 노드의 값을 출력
+		printf("%d ", cur->item);
+
+		  // 현재 노드의 왼쪽 자식이 있으면 큐에 추가
+		if(cur -> left != NULL){
+			enqueue(&head,&tail,cur->left);
+		}
+		// 현재 노드의 오른쪽 자식이 있으면 큐에 추가
+		if(cur ->right != NULL){
+			enqueue(&head, &tail,cur->right);
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

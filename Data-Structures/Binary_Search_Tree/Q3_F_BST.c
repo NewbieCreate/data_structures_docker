@@ -91,7 +91,29 @@ int main()
 
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
+	if (root == NULL) return;
+
+	// 가르킬 부분이 없기 때문에 NULL로 초기화
+	StackNode *s_ptr = NULL;
+
+   // 스택이 빌때까지 반복한다.
+	while(!isEmpty(s_ptr)) {
+		// 그래프에서 하나씩 꺼내어 cur을 넣는다.
+		BSTNode *cur = pop(&s_ptr);
+		//노드값을 출력한다.
+		printf("%d ", cur->item);
+
+		// 그래프의 왼쪽이 비지 않을 경우
+		if(cur->left != NULL){
+			// 스택에 아이템 값을 넣는다.
+			push(&s_ptr,cur->item);
+		}
+		// 그래프의 오른쪽이 비지 않을경우
+		if(cur->right != NULL){
+			// 스택에 집어넣는다.
+			push(&s_ptr,cur->left);
+		}
+	}	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

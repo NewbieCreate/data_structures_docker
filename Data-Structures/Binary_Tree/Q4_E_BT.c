@@ -123,24 +123,18 @@ if (node == NULL) return 0;
 
 // 왼쪽 서브트리의 홀수 합을 재귀적으로 구한다
 int left = sumOfOddNodes(node->left);
-
 // 오른쪽 서브트리의 홀수 합을 재귀적으로 구한다
 int right = sumOfOddNodes(node->right);
-
 // 결과를 저장할 변수 초기화
 int result = 0;
-
 // 현재 노드의 값이 홀수이면 result에 더한다
 if (node->item % 2 != 0) {
     result += node->item;
 }
-
 // 왼쪽 서브트리의 합을 result에 누적
 result += left;
-
 // 오른쪽 서브트리의 합을 result에 누적
 result += right;
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////

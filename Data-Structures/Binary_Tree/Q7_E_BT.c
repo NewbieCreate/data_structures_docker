@@ -101,8 +101,22 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int smallestValue(BTNode *node)
-{
-	/* add your code here */
+{   // 기저 조건: 매우 큰 값 반환
+	if(node == NULL) return __INT_MAX__;
+    // 루트값을 tmp에 집어넣는다.
+    int tmp = node ->item;
+    // 왼쪽으로 후위 순회 한다.
+    int left = smallestValue(node ->left);
+    //오른쪽으로 후위 순회 한다.
+    int right = smallestValue(node ->right);
+    if(left < tmp) {
+        tmp = left;
+    }
+    if(right < tmp) {
+        tmp = right;
+    }
+    
+    return tmp;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

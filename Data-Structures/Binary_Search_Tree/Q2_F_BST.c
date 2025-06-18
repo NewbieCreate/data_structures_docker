@@ -90,7 +90,30 @@ int main()
 
 void inOrderTraversal(BSTNode *root)
 {
-	 /* add your code here */
+	if (root == NULL){
+		return;
+	}
+    
+	//탑을 가리킬 주소가 없기 때문에 NULL 둠
+	StackNode *s_ptr = NULL;
+	// root가 움직일 수 없기 때문에 커런트를 root로 잡는다
+	BSTNode *cur =root;
+	// cur이 널이 아니거나 스택이 비지 않을 때 까지 반복
+	while (cur != NULL || !isEmpty(s_ptr)){
+		//서브트리가 널이 아닐때까지 반복
+		while(cur != NULL){
+			// 스택에 cur을 집어넣고 다음 스택주소를 받는다
+			push(&s_ptr, cur);
+			//트리를 왼쪽으로 돌며 포인터를 움직인다.
+		    cur = cur->left;
+		}
+	   // NULL을 만났을 경우 스택을 하나씩 꺼낸다 
+	  cur = pop(&s_ptr);
+	  // 팝 한 아이템을 출력한다.
+	  printf("%d ", cur->item);
+	  //오른쪽으로 포인터를 순회한다.
+	  cur = cur->right;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
