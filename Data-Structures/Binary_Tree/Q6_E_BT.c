@@ -104,8 +104,33 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void printSmallerValues(BTNode *node, int m)
-{
-	/* add your code here */
+{   
+    
+    /* 중위 선회 */
+    // if (node == NULL) return;
+    // printSmallerValues(node ->left, m);
+    
+    // if (node ->item < m) {
+    //     printf("%d ", node->item);
+    // }
+
+    // printSmallerValues(node ->right, m);
+    
+    // /* 전위선회 */
+    // if (node == NULL) return;
+    // if (node -> item < m) {
+    //     printf ("%d ", node ->item);
+    // }
+    // printSmallerValues(node ->left, m);
+    // printSmallerValues(node ->right, m);
+
+    /* 후위 선회 */
+    if (node == NULL) return;
+    printSmallerValues(node ->left, m);
+    printSmallerValues(node ->right, m);
+    if (node ->item < m) {
+      printf("%d ", node ->item);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////

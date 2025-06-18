@@ -97,7 +97,19 @@ int main()
 int maxHeight(BTNode *node)
 
 {
-    /* add your code here */
+    //재귀 호출 기저조건 생성 -> 높이 -1(간선 수 기준 정의)
+    if(node == NULL) return -1;
+    //왼쪽서브트리의 높이를 재귀적으로 계산
+    int left_maxHeight = maxHeight(node ->left);
+    //오른쪽서브트리 높이를 재귀적으로 계산
+    int right_maxHeight = maxHeight(node ->right);
+
+    //왼쪽과 오른쪽 중 더 큰 높이를 선택하고 해당높이 보다 +1하여 반환
+    if(left_maxHeight > right_maxHeight) {
+        return left_maxHeight +1;
+    }else{
+        return right_maxHeight +1;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

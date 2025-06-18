@@ -114,9 +114,18 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int identical(BTNode *tree1, BTNode *tree2)
-
 {
-   /* add your code here */
+    //양쪽 트리가 NULL일경우 양쪽 대칭이기때문에 1을 리턴 
+    if(tree1 == NULL && tree2 == NULL) {
+        return 1;
+    }
+    //양쪽 트리 중 한트리가 NULL이 아닐 경우 0을 리턴
+    if(tree1 == NULL || tree2 == NULL) {
+        return 0;
+    }
+
+    // 재귀 호출해서 tree의 왼쪽 값들과 tree의 오른쪽값이 트루일 경우 동일한 구조체로 식별
+    return identical(tree1->left,tree2->left) && identical(tree1->right,tree2->right);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
